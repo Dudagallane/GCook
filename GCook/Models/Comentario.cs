@@ -1,7 +1,5 @@
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CozaStore.Models;
 
 namespace GCook.Models;
 
@@ -9,7 +7,6 @@ namespace GCook.Models;
 public class Comentario
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [Required]
@@ -26,4 +23,5 @@ public class Comentario
 
     [StringLength(300)]
     public string TextoComentario { get; set; }
+
 }

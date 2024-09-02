@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GCook.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class criarbanco : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -80,7 +80,8 @@ namespace GCook.Migrations
                     Nome = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Foto = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ExibirHome = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -351,28 +352,93 @@ namespace GCook.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7243c8fa-97ca-4992-b46b-b058fc0d3f97", null, "Usuário", "USUÁRIO" },
-                    { "e795c285-e5fb-40ee-a7f4-0422e8dbb308", null, "Administrador", "ADMINISTRADOR" }
+                    { "0b44ca04-f6b0-4a8f-a953-1f2330d30894", null, "Administrador", "ADMINISTRADOR" },
+                    { "bec71b05-8f3d-4849-88bb-0e8d518d2de8", null, "Usuário", "USUÁRIO" },
+                    { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", null, "Moderador", "MODERADOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "8c77e2f4-587d-4ac4-b5e1-81ad5a08c1aa", 0, "614c4b43-4cc1-4b03-ae11-0f14e42935e1", "admin@gcook.com", true, false, null, "ADMIN@GCOOK.COM", "ADMIN", "AQAAAAIAAYagAAAAEG6Ixur5h1I0WTqn9PWN865BQs2wFtEQoLpuYXRTKqtYQxfErLpP2wv+vMP6UZNvCg==", null, false, "7d7a7554-0bdf-4976-b22c-726c8a3269e9", false, "Admin" });
+                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", 0, "14f5c773-a29e-42f3-bf18-a8bc7943ccc8", "admin@gcook.com", true, false, null, "ADMIN@GCOOK.COM", "ADMIN", "AQAAAAIAAYagAAAAEGDhbhUcWHNfHMaDqhdBEuq8tFF72tXucVN8UYV54hShHNLG4NOiOfSZdSuRjKroYA==", null, false, "74be2507-b3cb-47c7-b471-6ed8fa855832", false, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Categoria",
+                columns: new[] { "Id", "ExibirHome", "Foto", "Nome" },
+                values: new object[,]
+                {
+                    { 1, true, "/img/categorias/1.jpg", "Acompanhamentos" },
+                    { 2, false, "/img/categorias/2.jpg", "Bebidas" },
+                    { 3, true, "/img/categorias/3.jpg", "Bolos" },
+                    { 4, true, "/img/categorias/4.jpg", "Carnes" },
+                    { 5, true, "/img/categorias/5.jpg", "Frango" },
+                    { 6, false, "/img/categorias/6.jpg", "Lanches" },
+                    { 7, false, "/img/categorias/7.jpg", "Massas" },
+                    { 8, false, "/img/categorias/8.jpg", "Molhos" },
+                    { 9, true, "/img/categorias/9.jpg", "Pratos Principais" },
+                    { 10, false, "/img/categorias/10.jpg", "Peixes" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ingrediente",
+                columns: new[] { "Id", "Nome" },
+                values: new object[,]
+                {
+                    { 1, "Carne Moída" },
+                    { 2, "Pimentão Verde" },
+                    { 3, "Pimentão Vermelho" },
+                    { 4, "Pimentão Amarelo" },
+                    { 5, "Cebola" },
+                    { 6, "Curry" },
+                    { 7, "Pimenta Calabresa" },
+                    { 8, "Páprica Picante" },
+                    { 9, "Sal" },
+                    { 10, "Orégano" },
+                    { 11, "Pão Sirio" },
+                    { 12, "Cream Cheese" },
+                    { 13, "Cheddar" },
+                    { 14, "Azeite" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "7243c8fa-97ca-4992-b46b-b058fc0d3f97", "8c77e2f4-587d-4ac4-b5e1-81ad5a08c1aa" },
-                    { "e795c285-e5fb-40ee-a7f4-0422e8dbb308", "8c77e2f4-587d-4ac4-b5e1-81ad5a08c1aa" }
+                    { "0b44ca04-f6b0-4a8f-a953-1f2330d30894", "ddf093a6-6cb5-4ff7-9a64-83da34aee005" },
+                    { "bec71b05-8f3d-4849-88bb-0e8d518d2de8", "ddf093a6-6cb5-4ff7-9a64-83da34aee005" },
+                    { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", "ddf093a6-6cb5-4ff7-9a64-83da34aee005" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Receita",
+                columns: new[] { "Id", "CategoriaId", "Descricao", "Dificuldade", "Foto", "Nome", "Preparo", "Rendimento", "TempoPreparo" },
+                values: new object[] { 1, 4, "Prato perfeito para um lanche rápido ou mesmo uma refeição picante. Carne moída, pimentões, temperos e muito queijooooo", 1, "/img/receitas/1.jpg", "Carne Moída Mexicana", "Comece pela preparação dos ingredientes, pique os pimentões e a cebola em pequenos cubos, se preferir você também pode usar um processador de alimentos.Coloque a carne moída para fritar em uma panela com um pouco de azeite.Quando a carne moída já não estiver mais crua, adicione os pimentões e a cebola, mexendo bem para misturar todos os ingredientes.Aguarde alguns instante e adicione os temperos, mexendo novamente para misturar.Frite por mais alguns minutos a carne com os demais ingredientes.Adicione o Cream Cheese e o Queijo Cheddar, mexendo bem para evitar que queime o fundo e ajudar os queijos a derreterem.Quando os queijos já estiverem bem derretidos e misturados com os demais ingredientes, sirva acompanhado do Pão Sirio ou de Doritos.", 3, "20 minutos" });
 
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "UsuarioId", "DataNascimento", "Foto", "Nome" },
-                values: new object[] { "8c77e2f4-587d-4ac4-b5e1-81ad5a08c1aa", new DateTime(2007, 3, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "/img/users/avatar.png", "Maria Eduarda Portas Gallane" });
+                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", new DateTime(1981, 8, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "/img/usuarios/avatar.png", "José Antonio Gallo Junior" });
+
+            migrationBuilder.InsertData(
+                table: "ReceitaIngrediente",
+                columns: new[] { "IngredienteId", "ReceitaId", "Preparo", "Quantidade" },
+                values: new object[,]
+                {
+                    { 1, 1, null, "500g" },
+                    { 3, 1, null, "1 pequeno" },
+                    { 4, 1, null, "1 pequeno" },
+                    { 5, 1, null, "1 pequeno" },
+                    { 6, 1, null, "1 colher sopa" },
+                    { 7, 1, null, "1 colher sopa" },
+                    { 8, 1, null, "1 colher sopa" },
+                    { 9, 1, null, "1 colher sopa" },
+                    { 10, 1, null, "1 colher sopa" },
+                    { 11, 1, null, "A vontade" },
+                    { 12, 1, null, "200g" },
+                    { 13, 1, null, "200g" },
+                    { 14, 1, null, "Um pouco" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

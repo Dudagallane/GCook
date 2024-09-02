@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +7,6 @@ namespace GCook.Models;
 public class Categoria
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [Required]
@@ -17,4 +15,6 @@ public class Categoria
 
     [StringLength(300)]
     public string Foto { get; set; }
+
+    public bool ExibirHome { get; set; } = false;
 }
