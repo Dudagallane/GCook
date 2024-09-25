@@ -88,30 +88,30 @@ namespace GCook.Services
     return usuarioVM;
 }
 
-public async Task<SignInResult> LoginUsuario(LoginVM loginVM)
+public async Task<SignInResult> LoginUsuario(LoginVM login)
 {
-    string userName = loginVM.Email;
-    if (!Helper.IsValidEmail(loginVM.Email))
+    string userName = login.Email;
+    if (Helper.IsValidEmail(login.Email))
     {
         return null;
     }
 
-    var user = await _userManager.FindByEmailAsync(loginVM.Email);
+    var user = await _userManager.FindByEmailAsync(login.Email);
     if (user != null)
     {
         userName = user.UserName;
     }
 
     var result = await _signInManager.PasswordSignInAsync(
-        userName, loginVM.Senha, loginVM.Lembrar, lockoutOnFailure: true);
+        userName, login.Senha, login.Lembrar, lockoutOnFailure: true);
 
     if (result.Succeeded)
     {
-        _logger.LogInformation($"Usuário {loginVM.Email} acessou o sistema");
+        _logger.LogInformation($"Usuário {login.Email} acessou o sistema");
     }
     if (result.IsLockedOut)
     {
-        _logger.LogWarning($"Usuário {loginVM.Email} está bloqueado");
+        _logger.LogWarning($"Usuário {login.Email} está bloqueado");
     }
 
     return result;
